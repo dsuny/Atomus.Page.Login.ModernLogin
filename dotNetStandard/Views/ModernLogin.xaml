@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Atomus.Ads.Controls;assembly=Atomus.Core"
+             xmlns:local="clr-namespace:Atomus.Page.Login.ViewModel"
+             x:Class="Atomus.Page.Login.ModernLogin"
+             >
+    
+    <!--<ContentPage.BindingContext>
+        <local:DefaultLoginViewModel />
+    </ContentPage.BindingContext>-->
+    
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="260"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*" />
+                <RowDefinition Height="11*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#1a2f4f"/>
+
+            <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="End" VerticalOptions="Start" WidthRequest="30" HeightRequest="30" Margin="0,0,40,0" Padding="0"
+                    Text="X" Command="{Binding ExitCommand}" IsEnabled="{Binding IsEnabledControl}"  Style="{DynamicResource Button_Exit_ModernLogin}" />
+
+            <StackLayout Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" VerticalOptions="End">
+                <Label Text="Welcome" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Style="{DynamicResource Label_Welcome_ModernLogin}" />
+                <Label Text="{Binding AppName}" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Style="{DynamicResource Label_Name_ModernLogin}" />
+
+                <Label Text="이메일" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Style="{DynamicResource Label_White_ModernLogin}" Margin="0,5,0,0" />
+                <Frame Margin="0" Padding="0" CornerRadius="5">
+                    <Entry HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                           Placeholder="Email" Keyboard="Email" ClearButtonVisibility="WhileEditing"
+                           Text="{Binding Eemail}" IsEnabled="{Binding IsEnabledControl}"
+                           Style="{DynamicResource Entry_ModernLogin}"/>
+                </Frame>
+
+                <Label Text="비밀번호" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Style="{DynamicResource Label_White_ModernLogin}" Margin="0,5,0,0" />
+                <Frame Margin="0,0,0,20" Padding="0" CornerRadius="5">
+                    <Entry HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                           Placeholder="Password" IsPassword="True" ClearButtonVisibility="WhileEditing"
+                           Text="{Binding AccessNumber}" IsEnabled="{Binding IsEnabledControl}"
+                           Style="{DynamicResource Entry_ModernLogin}"/>
+                </Frame>
+            </StackLayout>
+
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" BackgroundColor="White" />
+
+            <StackLayout Grid.Row="1" Grid.Column="1" VerticalOptions="Start" Margin="0,10,0,0" Padding="0">
+                <Frame Margin="0" Padding="0" CornerRadius="5">
+                    <Button Text="로그인" Command="{Binding LoginCommand}" IsEnabled="{Binding IsEnabledControl}" Style="{DynamicResource Button_ModernLogin}"/>
+                </Frame>
+
+                <StackLayout Orientation="Horizontal" Margin="0" Padding="0">
+                    <CheckBox HorizontalOptions="Start" VerticalOptions="Start" Margin="0"
+                              IsChecked="{Binding RememberEmailIsToggled}" IsEnabled="{Binding IsEnabledControl}" />
+                    <Label Text="기억하기" HorizontalOptions="Start" VerticalOptions="Center" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Style="{DynamicResource Label_ModernLogin}" />
+
+                    <CheckBox HorizontalOptions="Start" VerticalOptions="Start" Margin="0"
+                              IsChecked="{Binding AutoLoginIsToggled}" IsEnabled="{Binding IsEnabledControl}" />
+                    <Label Text="자동로그인" HorizontalOptions="Start" VerticalOptions="Center" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Style="{DynamicResource Label_ModernLogin}" />
+                    <Grid HorizontalOptions="EndAndExpand">
+                        <Button Text="비밀번호변경" Margin="0" Padding="0" HeightRequest="10" HorizontalOptions="End" Command="{Binding PasswordChangeCommand}" IsEnabled="{Binding IsEnabledControl}" Style="{DynamicResource Button_PasswordChange_ModernLogin}"/>
+                    </Grid>
+                </StackLayout>
+
+                <Grid BackgroundColor="Transparent" ColumnSpacing="4" RowSpacing="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,10">
+                <Label Text="아직 회원이 아니신가요?" HorizontalOptions="Start" VerticalOptions="Center" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Style="{DynamicResource Label_ModernLogin}" />
+                <Button Text="회원가입" Margin="0,0,0,2" Padding="0" HeightRequest="18" Command="{Binding JoinCommand}" IsEnabled="{Binding IsEnabledControl}" Style="{DynamicResource Button_Join_ModernLogin}" />
+            </StackLayout>
+
+            <Label Grid.Row="2" Grid.Column="1" Text="{Binding AppName,StringFormat='Copyright ⓒ {0} All Rights Reserved.'}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Style="{DynamicResource Label_Micro_ModernLogin}" Margin="0,5,0,10" />
+            <!--<ActivityIndicator Grid.Row="0" Grid.Column="1" Color="CornflowerBlue" VerticalOptions="Center" HorizontalOptions="Center"
+                               IsRunning="{Binding ActivityIndicator}" />-->
+
+
+            <!--<Image Grid.Column="0" Grid.Row="0" 
+                   Source="{Binding BackgroundImage}" Aspect="{Binding BackgroundImageAspect}"
+                   HorizontalOptions="FillAndExpand"/>-->
+
+            <!--<AbsoluteLayout Grid.Column="0" Grid.Row="1" >
+                <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,1,1,1">
+                    <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" x:Name="stackLayout">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="260" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                    </Grid>
+
+
+                </StackLayout>
+                
+            </AbsoluteLayout>-->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
